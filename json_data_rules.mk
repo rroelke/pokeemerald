@@ -59,3 +59,14 @@ $(SPECIES_SRCS): %.c: $(SPECIES_JSON) %.c.template
 	$(JSONPROC) $^ $@
 
 species_templates: $(SPECIES_HEADERS) $(SPECIES_SRCS)
+
+
+TRAINERS_JSON := data/trainers.json
+
+TRAINER_HEADERS :=		\
+	include/constants/opponents.h
+
+$(TRAINER_HEADERS): %.h: $(TRAINERS_JSON) %.h.template
+	$(JSONPROC) $^ $@
+
+trainers_templates: $(TRAINER_HEADERS)
