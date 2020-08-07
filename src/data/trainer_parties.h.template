@@ -1,0 +1,57 @@
+{{ doNotModifyHeader }}
+
+## for trainer in trainers
+## if length(having(trainer.party, "held_item")) > 0
+## if length(having(trainer.party, "moves")) > 0
+
+static const struct TrainerMonItemCustomMoves sParty_{{cvar(trainer.name)}}[] = {
+## for pokemon in trainer.party
+    {
+        .iv = {{pokemon.iv}},
+        .lvl = {{pokemon.level}},
+        .species = SPECIES_{{cvar(pokemon.species)}},
+        .heldItem = ITEM_{% if existsIn(pokemon, "held_item") %}{{cvar(pokemon.held_item)}}{% else %}NONE{% endif %},
+        .moves = { {% for ii in range(4) %}MOVE_{% if ii < length(pokemon.moves) %}{{at(pokemon.moves, ii)}}{% else %}NONE{% endif %}{% if not loop.is_last %},{% endif %}{% endfor %} }
+    }{% if not loop.is_last %},{% endif %}
+## endfor
+};
+## else
+
+static const struct TrainerMonItemDefaultMoves sParty_{{cvar(trainer.name)}}[] = {
+## for pokemon in trainer.party
+    {
+        .iv = {{pokemon.iv}},
+        .lvl = {{pokemon.level}},
+        .species = SPECIES_{{cvar(pokemon.species)}},
+        .heldItem = ITEM_{% if existsIn(pokemon, "held_item") %}{{cvar(pokemon.held_item)}}{% else %}NONE{% endif %},
+    }{% if not loop.is_last %},{% endif %}
+## endfor
+};
+## endif
+## else
+## if length(having(trainer.party, "moves")) > 0
+
+static const struct TrainerMonNoItemCustomMoves sParty_{{cvar(trainer.name)}}[] = {
+## for pokemon in trainer.party
+    {
+        .iv = {{pokemon.iv}},
+        .lvl = {{pokemon.level}},
+        .species = SPECIES_{{cvar(pokemon.species)}},
+        .moves = { {% for ii in range(4) %}MOVE_{% if ii < length(pokemon.moves) %}{{at(pokemon.moves, ii)}}{% else %}NONE{% endif %}{% if not loop.is_last %},{% endif %}{% endfor %} }
+    }{% if not loop.is_last %},{% endif %}
+## endfor
+};
+## else
+
+static const struct TrainerMonNoItemDefaultMoves sParty_{{cvar(trainer.name)}}[] = {
+## for pokemon in trainer.party
+    {
+        .iv = {{pokemon.iv}},
+        .lvl = {{pokemon.level}},
+        .species = SPECIES_{{cvar(pokemon.species)}},
+    }{% if not loop.is_last %},{% endif %}
+## endfor
+};
+## endif
+## endif
+## endfor

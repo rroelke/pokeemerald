@@ -1,0 +1,33 @@
+{{ doNotModifyHeader }}
+
+const struct Trainer gTrainers[] = {
+    [TRAINER_NONE] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_HIKER,
+        .trainerName = _(""),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = 0,
+        .partySize = 0,
+        .party = {.NoItemDefaultMoves = NULL},
+    },
+## for trainer in trainers
+
+    [TRAINER_{{cvar(trainer.name)}}] =
+    {
+        .partyFlags = 0{% if length(having(trainer.party, "held_item")) > 0 %} | F_TRAINER_PARTY_HELD_ITEM{% endif %}{% if length(having(trainer.party, "moves")) > 0 %} | F_TRAINER_PARTY_CUSTOM_MOVESET{% endif %},
+        .trainerClass = TRAINER_CLASS_{{cvar(trainer.class)}},
+        .encounterMusic_gender = {% if existsIn(trainer, "gender") %}{% if trainer.gender == "female" %}F_TRAINER_FEMALE | {% endif %}{% endif %}TRAINER_ENCOUNTER_MUSIC_{{trainer.encounter_music}},
+        .trainerPic = TRAINER_PIC_{% if existsIn(trainer, "picture") %}{{cvar(trainer.picture)}}{% else %}{{cvar(trainer.class)}}{% endif %},
+        .trainerName = _("{{trainer.display_name}}"),
+        .items = {% if length(trainer.items) == 0 %}{}{% else %}{ {% for i in range(4) %}ITEM_{% if i < length(trainer.items) %}{{cvar(at(trainer.items, i))}}{% else %}NONE{% endif %}, {% endfor %} }{% endif %},
+        .doubleBattle = {% if flag(trainer, "double_battle") %}TRUE{% else %}FALSE{% endif %},
+        .aiFlags = 0{% if existsIn(trainer, "ai") %}{% if flag(trainer.ai, "check_bad_move") %} | AI_SCRIPT_CHECK_BAD_MOVE{% endif %}{% if flag(trainer.ai, "try_to_faint") %} | AI_SCRIPT_TRY_TO_FAINT{% endif %}{% if flag(trainer.ai, "check_viability") %} | AI_SCRIPT_CHECK_VIABILITY{% endif %}{% if flag(trainer.ai, "setup_first_turn") %} | AI_SCRIPT_SETUP_FIRST_TURN{% endif %}{% if flag(trainer.ai, "risky") %} | AI_SCRIPT_RISKY{% endif %}{% if flag(trainer.ai, "prefer_strongest_move") %} | AI_SCRIPT_PREFER_STRONGEST_MOVE{% endif %}{% if flag(trainer.ai, "prefer_baton_pass") %} | AI_SCRIPT_PREFER_BATON_PASS{% endif %}{% if flag(trainer.ai, "double_battle") %} | AI_SCRIPT_DOUBLE_BATTLE{% endif %}{% if flag(trainer.ai, "hp_aware") %} | AI_SCRIPT_HP_AWARE{% endif %}{% if flag(trainer.ai, "unknown") %} | AI_SCRIPT_UNKNOWN{% endif %}{% endif %},
+        .partySize = ARRAY_COUNT(sParty_{{cvar(trainer.name)}}),
+        .party = {.{% if length(having(trainer.party, "held_item")) > 0 %}Item{% else %}NoItem{% endif %}{% if length(having(trainer.party, "moves")) > 0 %}CustomMoves{% else %}DefaultMoves{% endif %} = sParty_{{cvar(trainer.name)}}},
+    },
+## endfor
+};
