@@ -116,6 +116,21 @@ int main(int argc, char *argv[])
     });
 
     /**
+     * Returns true if the field (arg 2) is set in the provided object (arg 1),
+     */
+    env.add_callback("flag", 2, [](Arguments &args) {
+        const json *obj = args.at(0);
+        const string flagname = args.at(1)->get<string>();
+
+        const auto maybe = obj->find(flagname);
+        if (maybe == obj->end()) {
+            return false;
+        } else {
+            return maybe->get<bool>();
+        }
+    });
+
+    /**
      * Convert a name to a C-compliant variable name
      */
     env.add_callback("cvar", 1, [](Arguments &args) {
