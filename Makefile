@@ -123,6 +123,7 @@ else
 NODEP := 1
 endif
 
+
 C_SRCS_IN := $(wildcard $(C_SUBDIR)/*.c $(C_SUBDIR)/*/*.c $(C_SUBDIR)/*/*/*.c)
 C_SRCS := $(foreach src,$(C_SRCS_IN),$(if $(findstring .inc.c,$(src)),,$(src)))
 C_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(C_SRCS))
@@ -239,8 +240,12 @@ else
 $(C_BUILDDIR)/librfu_intr.o: CFLAGS := -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast
 endif
 
+ifeq (,$(filter-out all rom compare modern,$(MAKECMDGOALS)))
+$(call infoshell, $(MAKE) $(AUTO_GEN_HEADERS) $(AUTO_GEN_SRCS))
+endif
+
 ifeq ($(NODEP),1)
-$(C_BUILDDIR)/%.o: c_dep := $(AUTO_GEN_HEADERS)
+$(C_BUILDDIR)/%.o: c_dep :=
 else
 $(C_BUILDDIR)/%.o: c_dep = $(shell [[ -f $(C_SUBDIR)/$*.c ]] && $(SCANINC) -I include -I tools/agbcc/include -I gflib $(C_SUBDIR)/$*.c)
 endif
@@ -268,7 +273,7 @@ $(GFLIB_BUILDDIR)/%.o : $(GFLIB_SUBDIR)/%.c $$(c_dep)
 	$(AS) $(ASFLAGS) -o $@ $(GFLIB_BUILDDIR)/$*.s
 
 ifeq ($(NODEP),1)
-$(C_BUILDDIR)/%.o: c_asm_dep := $(AUTO_GEN_HEADERS)
+$(C_BUILDDIR)/%.o: c_asm_dep :=
 else
 $(C_BUILDDIR)/%.o: c_asm_dep = $(shell [[ -f $(C_SUBDIR)/$*.s ]] && $(SCANINC) -I "" $(C_SUBDIR)/$*.s)
 endif
@@ -277,7 +282,7 @@ $(C_BUILDDIR)/%.o: $(C_SUBDIR)/%.s $$(c_asm_dep)
 	$(AS) $(ASFLAGS) -o $@ $<
 
 ifeq ($(NODEP),1)
-$(ASM_BUILDDIR)/%.o: asm_dep := $(AUTO_GEN_HEADERS)
+$(ASM_BUILDDIR)/%.o: asm_dep :=
 else
 $(ASM_BUILDDIR)/%.o: asm_dep = $(shell $(SCANINC) -I "" $(ASM_SUBDIR)/$*.s)
 endif
@@ -286,7 +291,7 @@ $(ASM_BUILDDIR)/%.o: $(ASM_SUBDIR)/%.s $$(asm_dep)
 	$(AS) $(ASFLAGS) -o $@ $<
 
 ifeq ($(NODEP),1)
-$(DATA_ASM_BUILDDIR)/%.o: data_dep := $(AUTO_GEN_HEADERS)
+$(DATA_ASM_BUILDDIR)/%.o: data_dep :=
 else
 $(DATA_ASM_BUILDDIR)/%.o: data_dep = $(shell $(SCANINC) -I include -I "" $(DATA_ASM_SUBDIR)/$*.s)
 endif
@@ -317,7 +322,7 @@ endif
 $(OBJ_DIR)/ld_script.ld: $(LD_SCRIPT) $(LD_SCRIPT_DEPS)
 	cd $(OBJ_DIR) && sed "s#tools/#../../tools/#g" ../../$(LD_SCRIPT) > ld_script.ld
 
-$(ELF): $(AUTO_GEN_SRCS) $(OBJ_DIR)/ld_script.ld $(OBJS) berry_fix libagbsyscall
+$(ELF): $(OBJ_DIR)/ld_script.ld $(OBJS) berry_fix libagbsyscall
 	cd $(OBJ_DIR) && $(LD) $(LDFLAGS) -T ld_script.ld -o ../../$@ $(OBJS_REL) $(LIB)
 	$(FIX) $@ -t"$(TITLE)" -c$(GAME_CODE) -m$(MAKER_CODE) -r$(REVISION) --silent
 
