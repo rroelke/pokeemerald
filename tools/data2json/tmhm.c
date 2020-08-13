@@ -1,0 +1,6 @@
+#include "gba/types.h"
+#include "constants/items.h"
+#include "constants/moves.h"
+#include "constants/species.h"
+#include "data/pokemon/tmhm_learnsets.h"
+#include "data/tmhm.h"
