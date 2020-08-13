@@ -1,0 +1,12 @@
+{{ doNotModifyHeader }}
+
+
+const u8 gSpeciesToBackAnimSet[] =
+{
+## for specimen in species
+## if specimen.name >= "OLD_UNOWN_B" and specimen.name <= "OLD_UNOWN_Z"
+## else
+    [SPECIES_{{cvar(specimen.name)}}] = BACK_ANIM_{{cvar(upper(specimen.graphics.back_pic.animation))}},
+## endif
+## endfor
+};

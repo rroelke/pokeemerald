@@ -1,0 +1,46 @@
+{{ doNotModifyHeader }}
+
+
+// Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.
+// 255 (MON_GENDERLESS) is reserved for genderless Pokémon.
+#define PERCENT_FEMALE(percent) min(254, ((percent * 255) / 100))
+
+
+const struct BaseStats gBaseStats[] =
+{
+    [SPECIES_NONE] = {0},
+## for specimen in species
+
+    [SPECIES_{{cvar(specimen.name)}}] =
+    {
+        .baseHP        = {{specimen.base_stats.hp}},
+        .baseAttack    = {{specimen.base_stats.attack}},
+        .baseDefense   = {{specimen.base_stats.defense}},
+        .baseSpeed     = {{specimen.base_stats.speed}},
+        .baseSpAttack  = {{specimen.base_stats.special_attack}},
+        .baseSpDefense = {{specimen.base_stats.special_defense}},
+        .type1 = TYPE_{{upper(specimen.type.0)}},
+        .type2 = TYPE_{% if length(specimen.type) > 1 %}{{upper(specimen.type.1)}}{% else %}{{upper(specimen.type.0)}}{% endif %},
+        .catchRate = {{specimen.catch_rate}},
+        .expYield  = {{specimen.experience_yield}},
+        .evYield_HP        = {% if existsIn(specimen.ev_yield, "hp") %}{{specimen.ev_yield.hp}}{% else %}0{% endif %},
+        .evYield_Attack    = {% if existsIn(specimen.ev_yield, "attack") %}{{specimen.ev_yield.attack}}{% else %}0{% endif %},
+        .evYield_Defense   = {% if existsIn(specimen.ev_yield, "defense") %}{{specimen.ev_yield.defense}}{% else %}0{% endif %},
+        .evYield_Speed     = {% if existsIn(specimen.ev_yield, "speed") %}{{specimen.ev_yield.speed}}{% else %}0{% endif %},
+        .evYield_SpAttack  = {% if existsIn(specimen.ev_yield, "special_attack")  %}{{specimen.ev_yield.special_attack}}{% else %}0{% endif %},
+        .evYield_SpDefense = {% if existsIn(specimen.ev_yield, "special_defense") %}{{specimen.ev_yield.special_defense}}{% else %}0{% endif %},
+        .item1 = ITEM_{% if existsIn(specimen, "item") %}{% if length(specimen.item) > 0 %}{{upper(specimen.item.0)}}{% else %}NONE{% endif %}{% else %}NONE{% endif %},
+        .item2 = ITEM_{% if existsIn(specimen, "item") %}{% if length(specimen.item) > 1 %}{{upper(specimen.item.1)}}{% else %}NONE{% endif %}{% else %}NONE{% endif %},
+        .genderRatio = {% if existsIn(specimen, "pct_female") %}PERCENT_FEMALE({{specimen.pct_female}}){% else %}MON_GENDERLESS{% endif %},
+        .eggCycles = {{specimen.breeding.egg_cycles}},
+        .friendship = {{specimen.base_friendship}},
+        .growthRate = GROWTH_{{cvar(upper(specimen.growth_rate))}},
+        .eggGroup1 = EGG_GROUP_{% if existsIn(specimen.breeding, "egg_group") %}{{cvar(upper(specimen.breeding.egg_group.0))}}{% else %}UNDISCOVERED{% endif %},
+        .eggGroup2 = EGG_GROUP_{% if existsIn(specimen.breeding, "egg_group") %}{% if length(specimen.breeding.egg_group) > 1 %}{{cvar(upper(specimen.breeding.egg_group.1))}}{% else %}{{cvar(upper(specimen.breeding.egg_group.0))}}{% endif %}{% else %}UNDISCOVERED{% endif %},
+        .abilities = {ABILITY_{% if length(specimen.abilities) > 0 %}{{cvar(upper(specimen.abilities.0))}}{% else %}NONE{% endif %}, ABILITY_{% if length(specimen.abilities) > 1 %}{{cvar(upper(specimen.abilities.1))}}{% else %}NONE{% endif %}},
+        .safariZoneFleeRate = {% if existsIn(specimen, "safari_flee_rate") %}{{specimen.safari_flee_rate}}{% else %}0{% endif %},
+        .bodyColor = BODY_COLOR_{{upper(specimen.body_color)}},
+        .noFlip = {% if not existsIn(specimen, "graphics") %}FALSE{% else if not existsIn(specimen.graphics, "flip") %}FALSE{% else if specimen.graphics.flip %}FALSE{% else %}TRUE{% endif %},
+    },
+## endfor
+};

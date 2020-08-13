@@ -1,0 +1,15 @@
+{{ doNotModifyHeader }}
+
+
+const u8 *const gMonFootprintTable[] =
+{
+    [SPECIES_NONE] = gMonFootprint_BULBASAUR,
+## for specimen in species
+## if specimen.name >= "OLD_UNOWN_B" and specimen.name <= "OLD_UNOWN_Z"
+    [SPECIES_{{cvar(specimen.name)}}] = gMonFootprint_QuestionMark,
+## else
+    [SPECIES_{{cvar(specimen.name)}}] = gMonFootprint_{{cvar(specimen.name)}},
+## endif
+## endfor
+    [SPECIES_EGG] = gMonFootprint_BULBASAUR
+};

@@ -1,0 +1,18 @@
+{{ doNotModifyHeader }}
+
+
+const u8 *const gMonIconTable[] =
+{
+    [SPECIES_NONE] = gMonIcon_BULBASAUR,
+## for specimen in species
+## if specimen.name >= "OLD_UNOWN_B" and specimen.name <= "OLD_UNOWN_Z"
+    [SPECIES_{{cvar(specimen.name)}}] = gMonIcon_QuestionMark,
+## else
+	[SPECIES_{{cvar(specimen.name)}}] = gMonIcon_{{cvar(specimen.name)}},
+## endif
+## endfor
+    [SPECIES_EGG] = gMonIcon_Egg,
+## for form in unown_forms
+    [SPECIES_UNOWN_{{form.letter}}] = gMonIcon_UNOWN_{{form.letter}},
+## endfor
+};

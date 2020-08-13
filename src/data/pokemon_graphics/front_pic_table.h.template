@@ -1,0 +1,18 @@
+{{ doNotModifyHeader }}
+
+
+const struct CompressedSpriteSheet gMonFrontPicTable[] =
+{
+    SPECIES_SPRITE(NONE, gMonFrontPic_CircledQuestionMark),
+## for specimen in species
+## if specimen.name >= "OLD_UNOWN_B" and specimen.name <= "OLD_UNOWN_Z"
+    SPECIES_SPRITE({{cvar(specimen.name)}}, gMonFrontPic_DoubleQuestionMark),
+## else
+    SPECIES_SPRITE({{cvar(specimen.name)}}, gMonFrontPic_{{cvar(specimen.name)}}),
+## endif
+## endfor
+    SPECIES_SPRITE(EGG, gMonFrontPic_Egg),
+## for form in unown_forms
+    SPECIES_SPRITE(UNOWN_{{form.letter}}, gMonFrontPic_UNOWN_{{form.letter}}),
+## endfor
+};

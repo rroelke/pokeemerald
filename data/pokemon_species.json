@@ -72114,5 +72114,844 @@
                 }
             }
         }
+    ],
+    "unown_forms": [
+        {
+            "letter": "B",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x56",
+                    "y_offset": 9
+                },
+                "front_pic": {
+                    "size": "0x34",
+                    "y_offset": 16,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "C",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x67",
+                    "y_offset": 6
+                },
+                "front_pic": {
+                    "size": "0x44",
+                    "y_offset": 16,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "D",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x56",
+                    "y_offset": 8
+                },
+                "front_pic": {
+                    "size": "0x44",
+                    "y_offset": 16,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "E",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x56",
+                    "y_offset": 10
+                },
+                "front_pic": {
+                    "size": "0x44",
+                    "y_offset": 17,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "F",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x66",
+                    "y_offset": 10
+                },
+                "front_pic": {
+                    "size": "0x44",
+                    "y_offset": 17,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "G",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x57",
+                    "y_offset": 5
+                },
+                "front_pic": {
+                    "size": "0x35",
+                    "y_offset": 14,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "H",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x66",
+                    "y_offset": 8
+                },
+                "front_pic": {
+                    "size": "0x44",
+                    "y_offset": 16,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "I",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x37",
+                    "y_offset": 7
+                },
+                "front_pic": {
+                    "size": "0x34",
+                    "y_offset": 16,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "J",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x46",
+                    "y_offset": 9
+                },
+                "front_pic": {
+                    "size": "0x34",
+                    "y_offset": 17,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "K",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x57",
+                    "y_offset": 7
+                },
+                "front_pic": {
+                    "size": "0x44",
+                    "y_offset": 17,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "L",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x46",
+                    "y_offset": 10
+                },
+                "front_pic": {
+                    "size": "0x34",
+                    "y_offset": 19,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "M",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x65",
+                    "y_offset": 13
+                },
+                "front_pic": {
+                    "size": "0x44",
+                    "y_offset": 19,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "N",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x65",
+                    "y_offset": 13
+                },
+                "front_pic": {
+                    "size": "0x43",
+                    "y_offset": 20,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "O",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x66",
+                    "y_offset": 8
+                },
+                "front_pic": {
+                    "size": "0x44",
+                    "y_offset": 16,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "P",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x46",
+                    "y_offset": 10
+                },
+                "front_pic": {
+                    "size": "0x34",
+                    "y_offset": 19,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "Q",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x55",
+                    "y_offset": 15
+                },
+                "front_pic": {
+                    "size": "0x43",
+                    "y_offset": 21,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "R",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x45",
+                    "y_offset": 12
+                },
+                "front_pic": {
+                    "size": "0x34",
+                    "y_offset": 19,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "S",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x57",
+                    "y_offset": 4
+                },
+                "front_pic": {
+                    "size": "0x45",
+                    "y_offset": 12,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "T",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x45",
+                    "y_offset": 13
+                },
+                "front_pic": {
+                    "size": "0x34",
+                    "y_offset": 18,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "U",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x65",
+                    "y_offset": 13
+                },
+                "front_pic": {
+                    "size": "0x44",
+                    "y_offset": 18,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "V",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x56",
+                    "y_offset": 11
+                },
+                "front_pic": {
+                    "size": "0x44",
+                    "y_offset": 18,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "W",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x55",
+                    "y_offset": 13
+                },
+                "front_pic": {
+                    "size": "0x44",
+                    "y_offset": 19,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "X",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x55",
+                    "y_offset": 15
+                },
+                "front_pic": {
+                    "size": "0x33",
+                    "y_offset": 21,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "Y",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x46",
+                    "y_offset": 10
+                },
+                "front_pic": {
+                    "size": "0x34",
+                    "y_offset": 17,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "Z",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x46",
+                    "y_offset": 10
+                },
+                "front_pic": {
+                    "size": "0x34",
+                    "y_offset": 16,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "EXCLAMATION_MARK",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x37",
+                    "y_offset": 6
+                },
+                "front_pic": {
+                    "size": "0x35",
+                    "y_offset": 15,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "letter": "QUESTION_MARK",
+            "graphics": {
+                "back_pic": {
+                    "size": "0x47",
+                    "y_offset": 6
+                },
+                "front_pic": {
+                    "size": "0x35",
+                    "y_offset": 13,
+                    "animation": {
+                        "frames": [
+                            [
+                                [
+                                    0,
+                                    30
+                                ],
+                                [
+                                    1,
+                                    30
+                                ],
+                                [
+                                    0,
+                                    1
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
+        }
     ]
 }

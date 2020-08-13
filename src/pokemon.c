@@ -144,7 +144,6 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 #include "data/pokemon/level_up_learnset_pointers.h"
 #include "data/pokemon_graphics/front_animation.h"
 
-
 const u8 gPPUpGetMask[] = {0x03, 0x0c, 0x30, 0xc0}; // Masks for getting PP Up count, also PP Max values
 const u8 gPPUpSetMask[] = {0xfc, 0xf3, 0xcf, 0x3f}; // Masks for setting PP Up count
 const u8 gPPUpAddMask[] = {0x01, 0x04, 0x10, 0x40}; // Values added to PP Up count
