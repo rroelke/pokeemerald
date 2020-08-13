@@ -409,6 +409,7 @@ static bool8 SetUpFieldMove_Dive(void);
 // static const data
 #include "data/pokemon/tutor_learnsets.h"
 #include "data/party_menu.h"
+#include "data/tmhm.h"
 
 // code
 static void InitPartyMenu(u8 menuType, u8 layout, u8 partyAction, bool8 keepCursorPos, u8 messageId, TaskFunc task, MainCallback callback)
