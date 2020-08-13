@@ -150,7 +150,8 @@ OBJS_REL := $(patsubst $(OBJ_DIR)/%,%,$(OBJS))
 
 SUBDIRS  := $(sort $(dir $(OBJS)))
 
-AUTO_GEN_TARGETS :=
+AUTO_GEN_HEADERS :=
+AUTO_GEN_SRCS    :=
 
 $(shell mkdir -p $(SUBDIRS))
 
@@ -182,7 +183,7 @@ mostlyclean: tidy
 	rm -f $(DATA_ASM_SUBDIR)/layouts/layouts.inc $(DATA_ASM_SUBDIR)/layouts/layouts_table.inc
 	rm -f $(DATA_ASM_SUBDIR)/maps/connections.inc $(DATA_ASM_SUBDIR)/maps/events.inc $(DATA_ASM_SUBDIR)/maps/groups.inc $(DATA_ASM_SUBDIR)/maps/headers.inc
 	find $(DATA_ASM_SUBDIR)/maps \( -iname 'connections.inc' -o -iname 'events.inc' -o -iname 'header.inc' \) -exec rm {} +
-	rm -f $(AUTO_GEN_TARGETS)
+	rm -f $(AUTO_GEN_HEADERS) $(AUTO_GEN_SRCS)
 	@$(MAKE) clean -C berry_fix
 	@$(MAKE) clean -C libagbsyscall
 
@@ -236,6 +237,10 @@ $(C_BUILDDIR)/librfu_intr.o: CC1 := tools/agbcc/bin/agbcc_arm
 $(C_BUILDDIR)/librfu_intr.o: CFLAGS := -O2 -mthumb-interwork -quiet
 else
 $(C_BUILDDIR)/librfu_intr.o: CFLAGS := -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast
+endif
+
+ifeq (,$(filter-out all rom compare modern,$(MAKECMDGOALS)))
+$(call infoshell, $(MAKE) $(AUTO_GEN_HEADERS) $(AUTO_GEN_SRCS))
 endif
 
 ifeq ($(NODEP),1)
