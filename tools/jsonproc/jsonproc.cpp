@@ -3,15 +3,50 @@
 #include "jsonproc.h"
 
 #include <map>
-
+#include <regex>
 #include <string>
-using std::string; using std::to_string;
+#include <vector>
+
+using std::string;
+using std::to_string;
+using std::vector;
 
 #include <inja.hpp>
 using namespace inja;
 using json = nlohmann::json;
 
 std::map<string, string> customVars;
+
+static vector<string> split(const string &value, const char separator)
+{
+    vector<string> splits;
+
+    size_t start = 0, pos;
+    while ((pos = value.find(separator, start)) != string::npos) {
+        splits.push_back(value.substr(start, pos - start));
+        start = pos + 1;
+    }
+    splits.push_back(value.substr(start));
+
+    return splits;
+}
+
+/* optimized string replace for replacing one char with another */
+static void sreplace(string &valuearg, char src, char dst) {
+    char *d = &valuearg[0];
+    while (*d) {
+        if (*d == src) {
+            *d = dst;
+        }
+        ++d;
+    }
+}
+
+static string replace(const string &valuearg, const string &substr, const string &newsubstr)
+{
+    return std::regex_replace(valuearg, std::regex(substr), newsubstr);
+}
+
 
 void set_custom_var(string key, string value)
 {
@@ -89,6 +124,99 @@ int main(int argc, char *argv[])
             return rawValue;
 
         return rawValue.substr(0, i);
+    });
+
+    /**
+     * Returns true if the field (arg 2) is set in the provided object (arg 1),
+     */
+    env.add_callback("flag", 2, [](Arguments &args) {
+        const json *obj = args.at(0);
+        const string flagname = args.at(1)->get<string>();
+
+        const auto maybe = obj->find(flagname);
+        if (maybe == obj->end()) {
+            return false;
+        } else {
+            return maybe->get<bool>();
+        }
+    });
+
+    /**
+     * Convert a name to a C-compliant variable name
+     */
+    env.add_callback("cvar", 1, [](Arguments &args) {
+        string name = args.at(0)->get<string>();
+        name = replace(name, "\\. ", "_");
+        sreplace(name, '-', '_');
+        sreplace(name, ' ', '_');
+        name = replace(name, "'", "");
+        name = replace(name, "♀", "_F");
+        name = replace(name, "♂", "_M");
+        return name;
+    });
+
+    env.add_callback("escape", 1, [](Arguments &args) {
+        return replace(args.at(0)->get<string>(), "\n", "\\n");
+    });
+
+    /**
+     * Sort an array according to a particular key.
+     * A "/" character is the field separator.
+     * Objects missing any of the sort keys are
+     * ordered first.
+     */
+    env.add_callback("sort", 2, [](Arguments &args) {
+        const json *jsrc = args.at(0);
+        json jarray = *jsrc;
+
+        const vector<string> delims = split(args[1]->get<string>(), '/');
+
+        std::sort(jarray.begin(), jarray.end(), [args, delims](const json &left, const json &right) {
+            const json *jleft = &left;
+            const json *jright = &right;
+            for (const auto &delim : delims) {
+                auto maybeleft = jleft->find(delim);
+                auto mayberight = jright->find(delim);
+                if (maybeleft == jleft->end()) {
+                    return true;
+                } else if (mayberight == jright->end()) {
+                    return false;
+                }
+                jleft = &*maybeleft;
+                jright = &*mayberight;
+            }
+            return jleft->get<int>() <= jright->get<int>();
+        });
+        return jarray;
+    });
+
+    /**
+     * Filter an array for only elements possessing the given key
+     */
+    env.add_callback("having", 2, [](Arguments &args) {
+        const json *jsrc = args.at(0);
+
+        const vector<string> delims = split(args[1]->get<string>(), '/');
+
+        json passing = json::array();
+
+        for (auto arrayelt = jsrc->begin(); arrayelt != jsrc->end(); ++arrayelt) {
+            const json *jobj = &*arrayelt;
+            bool ok = true;
+            for (const auto &delim : delims) {
+                auto maybe = jobj->find(delim);
+                if (maybe == jobj->end()) {
+                    ok = false;
+                    break;
+                }
+                jobj = &*maybe;
+            }
+            if (ok) {
+                passing.push_back(json(*arrayelt));
+            }
+        }
+
+        return passing;
     });
 
     // single argument is a json object
