@@ -130,4 +130,15 @@ union AnimCmd
 #endif
 
 
+
+struct FacilityMon
+{
+    u16 species;
+    u16 moves[MAX_MON_MOVES];
+    u8 itemTableId;
+    u8 evSpread;
+    u8 nature;
+};
+
+
 #endif
