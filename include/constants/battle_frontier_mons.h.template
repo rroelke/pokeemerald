@@ -1,0 +1,23 @@
+{{ doNotModifyHeader }}
+
+
+#ifndef GUARD_CONSTANTS_BATTLE_FRONTIER_MONS_H
+#define GUARD_CONSTANTS_BATTLE_FRONTIER_MONS_H
+
+
+## for mon in pokemon
+## if getVar(mon.species) == ""
+{{ setVarInt(mon.species, 1) }}
+## else
+{{ setVarInt(mon.species, subtract(int(getVar(mon.species)), -1)) }}
+## endif
+#define FRONTIER_MON_{{upper(cvar(mon.species))}}_{{getVar(mon.species)}}   {{loop.index}}
+## endfor
+
+
+#define FRONTIER_MONS_HIGH_TIER     849 // Mons above this point can only appear > level 50
+
+
+#define NUM_FRONTIER_MONS           882
+
+#endif //GUARD_CONSTANTS_BATTLE_FRONTIER_MONS_H

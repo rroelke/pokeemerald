@@ -1,0 +1,20 @@
+{{ doNotModifyHeader }}
+
+
+const struct FacilityMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
+{
+## for mon in pokemon
+## if getVar(mon.species) == ""
+{{ setVarInt(mon.species, 1) }}
+## else
+{{ setVarInt(mon.species, subtract(int(getVar(mon.species)), -1)) }}
+## endif
+    [FRONTIER_MON_{{upper(cvar(mon.species))}}_{{getVar(mon.species)}}] = {
+        .species = SPECIES_{{upper(cvar(mon.species))}},
+        .moves = { {% for ii in range(4) %}MOVE_{% if ii < length(mon.moves) %}{{cvar(at(mon.moves, ii))}}{% else %}NONE{% endif %}{% if not loop.is_last %},{% endif %}{% endfor %} },
+        .itemTableId = BATTLE_FRONTIER_ITEM_{{upper(cvar(mon.item))}},
+        .evSpread = 0{% if existsIn(mon.evs, "hp") %}| F_EV_SPREAD_HP{% endif %}{% if existsIn(mon.evs, "attack") %}| F_EV_SPREAD_ATTACK{% endif %}{% if existsIn(mon.evs, "defense") %}| F_EV_SPREAD_DEFENSE{% endif %}{% if existsIn(mon.evs, "speed") %}| F_EV_SPREAD_SPEED{% endif %}{% if existsIn(mon.evs, "special_attack") %}| F_EV_SPREAD_SP_ATTACK{% endif %}{% if existsIn(mon.evs, "special_defense") %}| F_EV_SPREAD_SP_DEFENSE{% endif %},
+        .nature = NATURE_{{upper(cvar(mon.nature))}}
+    },
+## endfor
+};

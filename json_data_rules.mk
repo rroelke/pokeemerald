@@ -70,6 +70,19 @@ $(TRAINER_HEADERS): %.h: $(TRAINERS_JSON) %.h.template
 trainers_templates: $(TRAINER_HEADERS)
 
 
+FRONTIER_MON_JSON := data/battle_frontier_mons.json
 
-AUTO_GEN_HEADERS += $(DATA_SRC_SUBDIR)/wild_encounters.h $(SPECIES_HEADERS) $(TRAINER_HEADERS)
+FRONTIER_MON_HEADERS :=                             \
+    include/constants/battle_frontier_mons.h        \
+    src/data/battle_frontier/battle_frontier_mons.h
+
+$(FRONTIER_MON_HEADERS): %.h: $(FRONTIER_MON_JSON) %.h.template
+	$(JSONPROC) $^ $@
+
+frontier_mon_templates: $(FRONTIER_MON_HEADERS)
+
+
+
+
+AUTO_GEN_HEADERS += $(DATA_SRC_SUBDIR)/wild_encounters.h $(SPECIES_HEADERS) $(TRAINER_HEADERS) $(FRONTIER_MON_HEADERS)
 AUTO_GEN_SRCS    += $(SPECIES_SRCS)
